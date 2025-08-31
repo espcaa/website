@@ -1,15 +1,27 @@
 // @ts-check
 
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
+import dynamicImportVars from "@rollup/plugin-dynamic-import-vars";
 
-import icon from 'astro-icon';
+import icon from "astro-icon";
 
-import react from '@astrojs/react';
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://example.com',
-    integrations: [mdx(), sitemap(), icon(), react()],
+  site: "https://example.com",
+  integrations: [mdx(), sitemap(), icon(), react()],
+  vite: {
+    plugins: [
+      dynamicImportVars({
+        include: [
+          "src/assets/projects/*.jpg",
+          "src/assets/projects/*.png",
+          "src/assets/projects/*.jpeg",
+        ],
+      }),
+    ],
+  },
 });

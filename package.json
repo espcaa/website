@@ -15,6 +15,7 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.5.0",
     "@material/material-color-utilities": "^0.3.0",
+    "@rollup/plugin-dynamic-import-vars": "^2.1.5",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "astro": "5.13.5",

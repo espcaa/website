@@ -1,23 +1,19 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import { getRandomWallpaper } from "../../utils/wallpaper";
 import "../styles/global.css";
 import { Icon } from "astro-icon/components";
 
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 const projects = await getCollection("projects");
-import { getColorFromFilename } from "../../utils/wallpaper";
 
-const { module: wallpaperModule, filename } = getRandomWallpaper();
-
-const colors = await getColorFromFilename(filename);
+import Projects from "../components/Projects.astro";
 
 import pfp from "../assets/pfp.png";
 ---
 
 <!doctype html>
-<html lang="en" style={`background-color: ${colors.background};`}>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <link
@@ -31,20 +27,55 @@ import pfp from "../assets/pfp.png";
         <link rel="shortcut icon" href="/pfp.png" />
         <link rel="icon" type="image/png" href="/pfp.png" />
     </head>
-    <body
-        style={`margin:0;
-           --primary: ${colors.primary};
-           --on-primary: ${colors.onPrimary};
-           --secondary: ${colors.secondary};
-           --on-secondary: ${colors.onSecondary};
-           --tertiary: ${colors.tertiary};
-           --on-tertiary: ${colors.onTertiary};
-           --background: ${colors.background};
-           --on-background: ${colors.onBackground};
-           --surface: ${colors.surface};
-           --on-surface: ${colors.onSurface};
-    `}
-    >
+    <body style={`margin:0;`}>
+        <script>
+            // Set up the background image
+
+            const wallpaperNumber = 5;
+            const randomIndex = Math.floor(Math.random() * wallpaperNumber) + 1;
+            (document.getElementById("bg") as HTMLImageElement)!.src =
+                `/wallpapers/${randomIndex}.webp`;
+
+            // get the colors from the image
+
+            const color_json = fetch("/data/wallpaper-colors.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    const colors = data[randomIndex.toString()].dark;
+                    document.documentElement.style.setProperty(
+                        "--primary",
+                        colors.primary,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--secondary",
+                        colors.secondary,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--tertiary",
+                        colors.tertiary,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--on-primary",
+                        colors.onPrimary,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--on-secondary",
+                        colors.onSecondary,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--on-tertiary",
+                        colors.onTertiary,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--background",
+                        colors.background,
+                    );
+                    document.documentElement.style.setProperty(
+                        "--on-background",
+                        colors.onBackground,
+                    );
+                });
+        </script>
         <div class="container">
             <div class="header">
                 <div class="pfpcontainer">
@@ -91,24 +122,12 @@ import pfp from "../assets/pfp.png";
                         the tech community.
                     </p>
                 </div>
-                <div class="projectsbox">
-                    {
-                        projects.map((project) => (
-                            <div class="slide">
-                                <img
-                                    src={project.data.image}
-                                    alt={project.data.title}
-                                />
-                                <h3>{project.data.title}</h3>
-                                <p>{project.data.description}</p>
-                            </div>
-                        ))
-                    }
-                </div>
+                <h2>My projects!</h2>
+                <Projects />
             </div>
-        </div>
-        <div class="bg">
-            <Image src={wallpaperModule} alt="Random wallpaper" />
+            <div class="bg">
+                <img id="bg" class="bgimg" />
+            </div>
         </div>
     </body>
 </html>

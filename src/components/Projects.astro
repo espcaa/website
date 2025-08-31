@@ -1,0 +1,35 @@
+---
+import "../styles/projects.css";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+
+const slides = await Promise.all(
+    projects.map(async (project) => {
+        const imageImport = await import(
+            `../assets/projects/${project.data.image}.png`
+        );
+        return {
+            project,
+            image: imageImport.default,
+        };
+    }),
+);
+---
+
+<div class="projects-row">
+    {
+        slides.map(({ project, image }) => (
+            <div class="project-card">
+                <div class="project-image">
+                    <Image src={image} alt={project.data.title} />
+                </div>
+                <div class="project-content">
+                    <h3>{project.data.title}</h3>
+                    <p>{project.data.description}</p>
+                </div>
+            </div>
+        ))
+    }
+</div>

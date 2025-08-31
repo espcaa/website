@@ -1,0 +1,97 @@
+{
+  "1": {
+    "seeds": [
+      "#3267b1",
+      "#d4d8df",
+      "#3267b1"
+    ],
+    "dark": {
+      "primary": "#a9c7ff",
+      "onPrimary": "#003063",
+      "secondary": "#d4d8df",
+      "onSecondary": "#ffffff",
+      "tertiary": "#3267b1",
+      "onTertiary": "#ffffff",
+      "background": "#1a1b1e",
+      "onBackground": "#e3e2e6",
+      "surface": "#1a1b1e",
+      "onSurface": "#e3e2e6"
+    }
+  },
+  "2": {
+    "seeds": [
+      "#947d52",
+      "#b5c2d9",
+      "#424536"
+    ],
+    "dark": {
+      "primary": "#f5be48",
+      "onPrimary": "#412d00",
+      "secondary": "#b5c2d9",
+      "onSecondary": "#ffffff",
+      "tertiary": "#424536",
+      "onTertiary": "#ffffff",
+      "background": "#1e1b16",
+      "onBackground": "#e9e1d9",
+      "surface": "#1e1b16",
+      "onSurface": "#e9e1d9"
+    }
+  },
+  "3": {
+    "seeds": [
+      "#a6cb0f",
+      "#818998",
+      "#3d342f"
+    ],
+    "dark": {
+      "primary": "#afd51f",
+      "onPrimary": "#293500",
+      "secondary": "#818998",
+      "onSecondary": "#ffffff",
+      "tertiary": "#3d342f",
+      "onTertiary": "#ffffff",
+      "background": "#1b1c17",
+      "onBackground": "#e4e3da",
+      "surface": "#1b1c17",
+      "onSurface": "#e4e3da"
+    }
+  },
+  "4": {
+    "seeds": [
+      "#a7aeb6",
+      "#656a6c",
+      "#63563e"
+    ],
+    "dark": {
+      "primary": "#8dcdff",
+      "onPrimary": "#00344f",
+      "secondary": "#656a6c",
+      "onSecondary": "#ffffff",
+      "tertiary": "#63563e",
+      "onTertiary": "#ffffff",
+      "background": "#1a1c1e",
+      "onBackground": "#e2e2e5",
+      "surface": "#1a1c1e",
+      "onSurface": "#e2e2e5"
+    }
+  },
+  "5": {
+    "seeds": [
+      "#64451c",
+      "#b6c8d8",
+      "#363323"
+    ],
+    "dark": {
+      "primary": "#ffb95e",
+      "onPrimary": "#472a00",
+      "secondary": "#b6c8d8",
+      "onSecondary": "#ffffff",
+      "tertiary": "#363323",
+      "onTertiary": "#ffffff",
+      "background": "#1f1b16",
+      "onBackground": "#ebe1d9",
+      "surface": "#1f1b16",
+      "onSurface": "#ebe1d9"
+    }
+  }
+}
