@@ -1,0 +1,174 @@
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/font/JetBrainsMono[wght].ttf") format("truetype");
+    font-weight: 400; /* or 700 if bold, etc. */
+    font-style: normal;
+    font-display: swap; /* helps with rendering while loading */
+}
+
+.container {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    width: 55vw;
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--primary);
+    border-right: 10px solid var(--primary);
+    padding: 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: row;
+}
+
+.pfp {
+    width: clamp(100px, 25vw, 200px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.name {
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-top: 50px;
+    overflow: wrap;
+}
+
+.icon {
+    width: clamp(30px, 5vw, 50px);
+    height: clamp(30px, 5vw, 50px);
+    color: var(--primary);
+    vertical-align: middle;
+    background-color: var(--on-primary);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+html {
+    background-color: var(--background);
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 41vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* behind everything */
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fill the box, may crop */
+    object-position: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* side by side by default */
+    min-height: 100vh;
+}
+
+/* background panel */
+.bg {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.headercontent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.headertop {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    margin-top: 20px;
+}
+
+.headerbottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.m3colors {
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    margin-top: 30px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .bg {
+        width: 100%;
+        height: 40vh;
+    }
+
+    .container {
+        width: 100%;
+        border-right: none;
+        border-top: 10px solid var(--primary);
+        margin-top: 40vh;
+    }
+
+    .headertop {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        margin-top: 0;
+    }
+
+    .m3colors {
+        margin-top: 10px;
+    }
+}
+
+.color {
+    width: 32px;
+    height: 32px;
+}
+
+.mapbox {
+    margin-top: 40px;
+    border-radius: 12px;
+}

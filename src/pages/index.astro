@@ -1,0 +1,114 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { getRandomWallpaper } from "../../utils/wallpaper";
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+const projects = await getCollection("projects");
+import { getColorFromFilename } from "../../utils/wallpaper";
+
+const { module: wallpaperModule, filename } = getRandomWallpaper();
+
+const colors = await getColorFromFilename(filename);
+
+import pfp from "../assets/pfp.png";
+---
+
+<!doctype html>
+<html lang="en" style={`background-color: ${colors.background};`}>
+    <head>
+        <meta charset="UTF-8" />
+        <link
+            href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
+            rel="stylesheet"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{SITE_TITLE}</title>
+        <meta name="description" content={SITE_DESCRIPTION} />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/pfp.png" />
+        <link rel="icon" type="image/png" href="/pfp.png" />
+    </head>
+    <body
+        style={`margin:0;
+           --primary: ${colors.primary};
+           --on-primary: ${colors.onPrimary};
+           --secondary: ${colors.secondary};
+           --on-secondary: ${colors.onSecondary};
+           --tertiary: ${colors.tertiary};
+           --on-tertiary: ${colors.onTertiary};
+           --background: ${colors.background};
+           --on-background: ${colors.onBackground};
+           --surface: ${colors.surface};
+           --on-surface: ${colors.onSurface};
+    `}
+    >
+        <div class="container">
+            <div class="header">
+                <div class="pfpcontainer">
+                    <Image src={pfp} alt="Profile Picture" class="pfp" />
+                </div>
+                <div class="headercontent">
+                    <div class="headertop">
+                        <div><h1>MY NAME MAYBE</h1></div>
+                        <div class="m3colors">
+                            <div
+                                class="color"
+                                style={`background-color: var(--primary);`}
+                            >
+                            </div>
+                            <div
+                                class="color"
+                                style={`background-color: var(--secondary);`}
+                            >
+                            </div>
+                            <div
+                                class="color"
+                                style={`background-color: var(--tertiary);`}
+                            >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="headerbottom">
+                        <a href="https://github.com/espcaa">
+                            <Icon name="commit" class="icon" />
+                        </a>
+                        <a href="mailto:alice@hackclub.cc" class="email-link">
+                            <Icon name="mail" class="icon" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="about">
+                    <h2>About Me</h2>
+                    <p>
+                        This is a brief description about me. I am passionate
+                        about technology, coding, and open-source projects. I
+                        love to explore new ideas and collaborate with others in
+                        the tech community.
+                    </p>
+                </div>
+                <div class="projectsbox">
+                    {
+                        projects.map((project) => (
+                            <div class="slide">
+                                <img
+                                    src={project.data.image}
+                                    alt={project.data.title}
+                                />
+                                <h3>{project.data.title}</h3>
+                                <p>{project.data.description}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="bg">
+            <Image src={wallpaperModule} alt="Random wallpaper" />
+        </div>
+    </body>
+</html>
