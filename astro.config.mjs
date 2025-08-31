@@ -11,7 +11,8 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  outDir: "dist",
+  base: "/",
   integrations: [mdx(), sitemap(), icon(), react()],
   vite: {
     plugins: [

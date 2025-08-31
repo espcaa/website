@@ -13,7 +13,7 @@ import pfp from "../assets/pfp.png";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="visibility: hidden; background-color: #242424;">
     <head>
         <meta charset="UTF-8" />
         <link
@@ -74,6 +74,8 @@ import pfp from "../assets/pfp.png";
                         "--on-background",
                         colors.onBackground,
                     );
+
+                    document.documentElement.style.visibility = "visible";
                 });
         </script>
         <div class="container">

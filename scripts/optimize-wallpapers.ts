@@ -20,7 +20,7 @@ async function optimizeImages() {
     const outputPath = path.join(outputDir, outputFileName);
 
     try {
-      await sharp(inputPath).webp({ quality: 50 }).toFile(outputPath);
+      await sharp(inputPath).rotate().webp({ quality: 50 }).toFile(outputPath);
       console.log(`Optimized: ${file} → ${outputFileName}`);
     } catch (err) {
       console.error(`Failed to optimize ${file}:`, err);
