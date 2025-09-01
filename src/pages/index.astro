@@ -1,4 +1,5 @@
 ---
+const start = performance.now();
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
 import { Icon } from "astro-icon/components";
@@ -67,6 +68,9 @@ const secondsToHumanReadable = (seconds_waka: number) => {
     const seconds = totalSeconds % 60;
     return `${hours}h ${minutes}m`;
 };
+
+const end = performance.now();
+const ssrTime = end - start;
 ---
 
 <!doctype html>
@@ -179,6 +183,9 @@ const secondsToHumanReadable = (seconds_waka: number) => {
                                 >the latest commit to this website</a
                             > was {gitInfo?.sha}
                             - {gitInfo?.text}
+                        </li>
+                        <li>
+                            SSR took {ssrTime.toFixed(2)}ms to render this page!
                         </li>
                     </ul>
                 </div>
