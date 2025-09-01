@@ -1,0 +1,81 @@
+---
+// src/pages/projects/[slug].astro
+import { render } from "astro:content";
+import { getEntry } from "astro:content";
+
+import { Image } from "astro:assets";
+
+const slug = Astro.params.slug as string & {};
+const project = await getEntry("projects", slug);
+import "../../styles/project-page.css";
+import { Icon } from "astro-icon/components";
+import { getColorFromFilename } from "../../../utils/wallpaper";
+
+const project_safe = project || {
+    data: { image: "default-project" },
+};
+const image = await import(
+    `../../assets/projects/${project_safe.data.image}.png`
+);
+
+// get the random index from ?color= query param
+const url = new URL(Astro.request.url);
+let randomIndex = url.searchParams.get("color");
+if (!randomIndex) {
+    randomIndex = "1";
+}
+
+const colors = await getColorFromFilename(randomIndex);
+
+if (!project) {
+    // Throwing Astro.redirect is the correct way to handle a 404
+    throw Astro.redirect("/404", 302);
+}
+
+// import the project img
+
+const { Content, headings } = await render(project);
+---
+
+<html lang="en">
+    <head>
+        <title>{project.data.title}</title>
+    </head>
+    <body
+        style={`margin:0;
+       --primary: ${colors.primary};
+       --on-primary: ${colors.onPrimary};
+       --secondary: ${colors.secondary};
+       --on-secondary: ${colors.onSecondary};
+       --tertiary: ${colors.tertiary};
+       --on-tertiary: ${colors.onTertiary};
+       --background: ${colors.background};
+       --on-background: ${colors.onBackground};
+       --surface: ${colors.surface};
+       --on-surface: ${colors.onSurface};
+`}
+    >
+        <div class="maincontainer">
+            <div class="buttons">
+                <Icon name="back" class="icon" onclick="history.back()" />
+            </div>
+            <div class="container">
+                <div class="header-proj">
+                    <Image
+                        src={image.default}
+                        alt={project.data.title}
+                        class="proj-header-img"
+                    />
+                    <div class="proj-header-text">
+                        <h1 class="proj-title">{project.data.title}</h1>
+                        <p class="proj-description">
+                            {project.data.description}
+                        </p>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <Content />
+            </div>
+        </div>
+    </body>
+</html>

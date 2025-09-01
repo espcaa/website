@@ -16,19 +16,28 @@ const slides = await Promise.all(
         };
     }),
 );
+
+// get the component prop colorId
+
+const { colorId } = Astro.props;
 ---
 
 <div class="projects-row">
     {
         slides.map(({ project, image }) => (
             <div class="project-card">
-                <div class="project-image">
-                    <Image src={image} alt={project.data.title} />
-                </div>
-                <div class="project-content">
-                    <h3>{project.data.title}</h3>
-                    <p>{project.data.description}</p>
-                </div>
+                <a
+                    href={`/projects/${project.slug}?color=${colorId}`}
+                    class="project-link"
+                >
+                    <div class="project-image">
+                        <Image src={image} alt={project.data.title} />
+                    </div>
+                    <div class="project-content">
+                        <h3>{project.data.title}</h3>
+                        <p>{project.data.description}</p>
+                    </div>
+                </a>
             </div>
         ))
     }

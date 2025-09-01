@@ -1,0 +1,89 @@
+.header-proj {
+    margin-top: 40px;
+}
+
+.maincontainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+}
+
+.buttons {
+    margin-right: 20px;
+    width: 10vw;
+    display: flex;
+    align-items: start;
+
+    justify-content: end;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.proj-header-img {
+    width: 40vw;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.proj-title {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+p,
+h1,
+.icon,
+a {
+    font-family: "Jetbrains Mono", monospace;
+    color: var(--primary);
+}
+
+.proj-description {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 0.1;
+}
+
+.proj-title {
+    line-height: 1;
+}
+
+.icon {
+    margin-top: 40px;
+    width: 2vw;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border-radius: 10px;
+    padding: 5px;
+    height: auto;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .buttons {
+        visibility: hidden;
+    }
+
+    .proj-header-img {
+        width: 80vw;
+        height: auto;
+    }
+}
+
+.separator {
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    margin: 20px 0;
+    margin-bottom: 20px;
+}

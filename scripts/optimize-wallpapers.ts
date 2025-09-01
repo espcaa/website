@@ -2,18 +2,15 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
-const inputDir = path.join(process.cwd(), "assets", "wallpapers-unoptimized");
-const outputDir = path.join(process.cwd(), "public", "wallpapers");
+async function optimizeFolder(inputDir: string, outputDir: string) {
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
 
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
-}
+  const files = fs
+    .readdirSync(inputDir)
+    .filter((file) => /\.(jpe?g|png)$/i.test(file));
 
-const files = fs
-  .readdirSync(inputDir)
-  .filter((file) => /\.(jpe?g|png)$/i.test(file));
-
-async function optimizeImages() {
   for (const file of files) {
     const inputPath = path.join(inputDir, file);
     const outputFileName = file.replace(/\.(jpe?g|png)$/i, ".webp");
@@ -28,4 +25,12 @@ async function optimizeImages() {
   }
 }
 
-optimizeImages();
+optimizeFolder(
+  path.join(process.cwd(), "assets", "wallpapers-unoptimized"),
+  path.join(process.cwd(), "public", "wallpapers"),
+);
+
+optimizeFolder(
+  path.join(process.cwd(), "assets", "places-unoptimized"),
+  path.join(process.cwd(), "public", "places"),
+);

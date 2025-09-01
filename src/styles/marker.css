@@ -1,26 +1,19 @@
 .map-marker {
-    width: 32px;
-    height: 48px; /* taller than wide */
-    background-image: url("/pin.svg"); /* or PNG */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    pointer-events: auto;
+    width: 100px;
+    background-color: var(--primary, white);
 }
 
 .marker-image {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 100%; /* Make it take the full width of the container */
+    height: 52px; /* Keep the height fixed if needed */
+    object-fit: cover; /* Fill the area completely, may crop slightly */
 }
 
 .marker-label {
-    margin-top: 4px;
-    background: var(--background, white);
-    padding: 4px 8px;
-    border-radius: 6px;
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1.2;
+    padding: 4px;
+    color: var(--on-primary, black);
     font-size: 12px;
-    text-align: center;
-    white-space: nowrap;
+    text-align: start;
 }
