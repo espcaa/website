@@ -21,6 +21,7 @@
     "astro": "5.13.5",
     "astro-icon": "^1.1.5",
     "mapbox-gl": "^3.14.0",
+    "maplibre-gl": "^5.7.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sharp": "^0.34.2"

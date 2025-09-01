@@ -2,24 +2,52 @@
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
 import { Icon } from "astro-icon/components";
-
-import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-const projects = await getCollection("projects");
+
+import {
+    getColorFromFilename,
+    getRandomWallpaperIndex,
+} from "../../utils/wallpaper";
 
 import Projects from "../components/Projects.astro";
+import { getCollection } from "astro:content";
+const places = await getCollection("places");
 
+const randomIndex = getRandomWallpaperIndex();
+const wallpaperStringPath = `/wallpapers/${randomIndex}.webp`;
+console.log(randomIndex.toString());
+const colors = await getColorFromFilename(randomIndex.toString());
 import pfp from "../assets/pfp.png";
+import Map from "../components/Map";
+
+const wallpaperMetadata = await import(
+    `../data/wallpapers/${randomIndex}.json`
+);
+
+const wakatime_response = await fetch(
+    "https://hackatime.hackclub.com/api/hackatime/v1/users/U05MKEZUY67/statusbar/today",
+    {
+        headers: {
+            Authorization: "Bearer " + import.meta.env.HACKATIME_KEY,
+        },
+    },
+);
+const wakatime_data = await wakatime_response.json();
+
+const secondsToHumanReadable = (seconds_waka: number) => {
+    const totalSeconds = seconds_waka;
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${hours}h ${minutes}m`;
+};
 ---
 
 <!doctype html>
-<html lang="en" style="visibility: hidden; background-color: #242424;">
+<html lang="en" style={`background-color: ${colors.background};`}>
     <head>
         <meta charset="UTF-8" />
-        <link
-            href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
-            rel="stylesheet"
-        />
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{SITE_TITLE}</title>
         <meta name="description" content={SITE_DESCRIPTION} />
@@ -27,57 +55,20 @@ import pfp from "../assets/pfp.png";
         <link rel="shortcut icon" href="/pfp.png" />
         <link rel="icon" type="image/png" href="/pfp.png" />
     </head>
-    <body style={`margin:0;`}>
-        <script>
-            // Set up the background image
-
-            const wallpaperNumber = 5;
-            const randomIndex = Math.floor(Math.random() * wallpaperNumber) + 1;
-            (document.getElementById("bg") as HTMLImageElement)!.src =
-                `/wallpapers/${randomIndex}.webp`;
-
-            // get the colors from the image
-
-            const color_json = fetch("/data/wallpaper-colors.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    const colors = data[randomIndex.toString()].dark;
-                    document.documentElement.style.setProperty(
-                        "--primary",
-                        colors.primary,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--secondary",
-                        colors.secondary,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--tertiary",
-                        colors.tertiary,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--on-primary",
-                        colors.onPrimary,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--on-secondary",
-                        colors.onSecondary,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--on-tertiary",
-                        colors.onTertiary,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--background",
-                        colors.background,
-                    );
-                    document.documentElement.style.setProperty(
-                        "--on-background",
-                        colors.onBackground,
-                    );
-
-                    document.documentElement.style.visibility = "visible";
-                });
-        </script>
+    <body
+        style={`margin:0;
+           --primary: ${colors.primary};
+           --on-primary: ${colors.onPrimary};
+           --secondary: ${colors.secondary};
+           --on-secondary: ${colors.onSecondary};
+           --tertiary: ${colors.tertiary};
+           --on-tertiary: ${colors.onTertiary};
+           --background: ${colors.background};
+           --on-background: ${colors.onBackground};
+           --surface: ${colors.surface};
+           --on-surface: ${colors.onSurface};
+    `}
+    >
         <div class="container">
             <div class="header">
                 <div class="pfpcontainer">
@@ -85,7 +76,7 @@ import pfp from "../assets/pfp.png";
                 </div>
                 <div class="headercontent">
                     <div class="headertop">
-                        <div><h1>MY NAME MAYBE</h1></div>
+                        <div><h1 class="title">alice [@spc]</h1></div>
                         <div class="m3colors">
                             <div
                                 class="color"
@@ -118,17 +109,49 @@ import pfp from "../assets/pfp.png";
                 <div class="about">
                     <h2>About Me</h2>
                     <p>
-                        This is a brief description about me. I am passionate
-                        about technology, coding, and open-source projects. I
-                        love to explore new ideas and collaborate with others in
-                        the tech community.
+                        Hi! I'm Alice, a coder from france :D I spend my days
+                        (or often nights) trying to build cool software (or
+                        hardware!), exploring new places or doing some random
+                        things like rock climbing. When I'm not on coding, you
+                        can see me in the hackclub slack! (the addiction is
+                        running deep...) I coded for {
+                            secondsToHumanReadable(
+                                wakatime_data.data.grand_total.total_seconds,
+                            )
+                        } today!
                     </p>
+                    <h2>My projects!</h2>
+                    <Projects />
+                    <h2>Random writings!</h2>
+                    <p>Nothing here yet :(</p>
+                    <h2>Places i've been to!</h2>
+                    <Map
+                        landColor={colors.onBackground}
+                        waterColor={colors.onPrimary}
+                        client:load
+                        borderColor={colors.background}
+                        places={places}
+                    />
+                    <h2>Friends!</h2>
                 </div>
-                <h2>My projects!</h2>
-                <Projects />
             </div>
             <div class="bg">
-                <img id="bg" class="bgimg" />
+                <img
+                    src={wallpaperStringPath}
+                    alt="Random wallpaper"
+                    class="bgimg"
+                />
+            </div>
+            <div class="picture-info">
+                <p>
+                    {wallpaperMetadata.what}
+                </p>
+                <p>
+                    {wallpaperMetadata.where}
+                </p>
+                <p>
+                    {wallpaperMetadata.date}
+                </p>
             </div>
         </div>
     </body>

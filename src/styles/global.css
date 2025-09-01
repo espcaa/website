@@ -73,6 +73,10 @@ html {
     z-index: -1; /* behind everything */
 }
 
+h2 {
+    text-decoration: underline wavy;
+}
+
 .bgimg {
     z-index: -10;
     width: 100%;
@@ -112,6 +116,16 @@ body {
     margin-top: 20px;
 }
 
+.picture-info {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    padding: 10px;
+    color: var(--on-background);
+    text-align: end;
+    font-family: "JetBrains Mono", monospace;
+}
+
 .headerbottom {
     display: flex;
     flex-direction: row;
@@ -122,6 +136,10 @@ body {
 .m3colors {
     display: flex;
     flex-direction: row;
+}
+
+.title {
+    font-size: 2.5rem;
 }
 
 h1 {
@@ -135,6 +153,13 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .picture-info {
+        visibility: hidden;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
     body {
         flex-direction: column;
     }

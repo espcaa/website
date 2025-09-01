@@ -1,0 +1,26 @@
+.map-marker {
+    width: 32px;
+    height: 48px; /* taller than wide */
+    background-image: url("/pin.svg"); /* or PNG */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    pointer-events: auto;
+}
+
+.marker-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.marker-label {
+    margin-top: 4px;
+    background: var(--background, white);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+}

@@ -1,16 +1,16 @@
 {
   "1": {
     "seeds": [
-      "#3267b1",
+      "#3064ac",
       "#d4d8df",
-      "#3267b1"
+      "#3064ac"
     ],
     "dark": {
       "primary": "#a9c7ff",
       "onPrimary": "#003063",
       "secondary": "#d4d8df",
       "onSecondary": "#ffffff",
-      "tertiary": "#3267b1",
+      "tertiary": "#3064ac",
       "onTertiary": "#ffffff",
       "background": "#1a1b1e",
       "onBackground": "#e3e2e6",
@@ -21,15 +21,15 @@
   "2": {
     "seeds": [
       "#947d52",
-      "#b5c2d9",
-      "#424536"
+      "#b3c2d7",
+      "#262b1f"
     ],
     "dark": {
       "primary": "#f5be48",
       "onPrimary": "#412d00",
-      "secondary": "#b5c2d9",
+      "secondary": "#b3c2d7",
       "onSecondary": "#ffffff",
-      "tertiary": "#424536",
+      "tertiary": "#262b1f",
       "onTertiary": "#ffffff",
       "background": "#1e1b16",
       "onBackground": "#e9e1d9",
@@ -40,13 +40,13 @@
   "3": {
     "seeds": [
       "#a6cb0f",
-      "#818998",
+      "#bcc8da",
       "#3d342f"
     ],
     "dark": {
       "primary": "#afd51f",
       "onPrimary": "#293500",
-      "secondary": "#818998",
+      "secondary": "#bcc8da",
       "onSecondary": "#ffffff",
       "tertiary": "#3d342f",
       "onTertiary": "#ffffff",
@@ -60,14 +60,14 @@
     "seeds": [
       "#a7aeb6",
       "#656a6c",
-      "#63563e"
+      "#172033"
     ],
     "dark": {
       "primary": "#8dcdff",
       "onPrimary": "#00344f",
       "secondary": "#656a6c",
       "onSecondary": "#ffffff",
-      "tertiary": "#63563e",
+      "tertiary": "#172033",
       "onTertiary": "#ffffff",
       "background": "#1a1c1e",
       "onBackground": "#e2e2e5",
@@ -77,16 +77,16 @@
   },
   "5": {
     "seeds": [
-      "#64451c",
-      "#b6c8d8",
-      "#363323"
+      "#7e5927",
+      "#b6c7d7",
+      "#e1dbcd"
     ],
     "dark": {
-      "primary": "#ffb95e",
-      "onPrimary": "#472a00",
-      "secondary": "#b6c8d8",
+      "primary": "#ffb95b",
+      "onPrimary": "#462a00",
+      "secondary": "#b6c7d7",
       "onSecondary": "#ffffff",
-      "tertiary": "#363323",
+      "tertiary": "#e1dbcd",
       "onTertiary": "#ffffff",
       "background": "#1f1b16",
       "onBackground": "#ebe1d9",

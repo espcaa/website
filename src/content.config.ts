@@ -8,4 +8,14 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const places = defineCollection({
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    image: z.string(),
+    latitude: z.number(),
+    longitude: z.number(),
+  }),
+});
+
+export const collections = { projects, places };
