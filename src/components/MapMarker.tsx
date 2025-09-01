@@ -5,11 +5,26 @@ interface MapMarkerProps {
   image: string;
   name?: string;
   description?: string;
+  link: string;
+  disableLink?: boolean;
 }
 
-const MapMarker: React.FC<MapMarkerProps> = ({ image, name, description }) => {
+const MapMarker: React.FC<MapMarkerProps> = ({
+  image,
+  name,
+  description,
+  link,
+  disableLink = false,
+}) => {
   return (
-    <div className="map-marker">
+    <div
+      className="map-marker"
+      onClick={(e) => {
+        if (!disableLink) {
+          window.location.href = link;
+        }
+      }}
+    >
       <img
         src={`/places/${image}.webp`}
         alt={name || "Marker"}

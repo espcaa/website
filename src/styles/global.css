@@ -126,6 +126,16 @@ body {
     font-family: "JetBrains Mono", monospace;
 }
 
+a {
+    color: var(--on-background);
+    text-decoration: underline;
+    text-decoration: none;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
 .headerbottom {
     display: flex;
     flex-direction: row;

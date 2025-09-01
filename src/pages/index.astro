@@ -9,9 +9,14 @@ import {
     getRandomWallpaperIndex,
 } from "../../utils/wallpaper";
 
+export const prerender = false;
+
 import Projects from "../components/Projects.astro";
+import Writings from "../components/Writings.astro";
 import { getCollection } from "astro:content";
-const places = await getCollection("places");
+const placesData = await getCollection("places");
+
+const gitInfo = getCommitInfo();
 
 const randomIndex = getRandomWallpaperIndex();
 const wallpaperStringPath = `/wallpapers/${randomIndex}.webp`;
@@ -19,6 +24,15 @@ console.log(randomIndex.toString());
 const colors = await getColorFromFilename(randomIndex.toString());
 import pfp from "../assets/pfp.png";
 import Map from "../components/Map";
+import { getCommitInfo } from "../utils/github";
+
+const places = placesData.map((place) => ({
+    ...place,
+    data: {
+        ...place.data,
+        link: `/places/${place.slug}?color=${randomIndex}`,
+    },
+}));
 
 const wallpaperMetadata = await import(
     `../data/wallpapers/${randomIndex}.json`
@@ -134,8 +148,6 @@ const secondsToHumanReadable = (seconds_waka: number) => {
                     </p>
                     <h2>My projects!</h2>
                     <Projects colorId={randomIndex} />
-                    <h2>Random writings!</h2>
-                    <p>Nothing here yet :(</p>
                     <h2>Places i've been to!</h2>
                     <Map
                         landColor={colors.onBackground}
@@ -148,11 +160,27 @@ const secondsToHumanReadable = (seconds_waka: number) => {
                         the lack of zoom is intentional. you can click on things
                         to get more details :D
                     </p>
-                    <h2>Random stats & infos!</h2>
-                    <p>
-                        Most of the data like project & places on this website
-                        are just markdown files!
-                    </p>
+                    <h2>Random writings!</h2>
+                    <Writings colorId={randomIndex} />
+
+                    <h2>Nerdy stats & infos!</h2>
+                    <ul>
+                        <li>
+                            Most of the data like project & places on this
+                            website are just markdown files!
+                        </li>
+                        <li>
+                            I coded {
+                                wakatime_data.data.grand_total.total_seconds
+                            } seconds today!
+                        </li>
+                        <li>
+                            <a href={gitInfo?.url}
+                                >the latest commit to this website</a
+                            > was {gitInfo?.sha}
+                            - {gitInfo?.text}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

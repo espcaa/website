@@ -7,7 +7,7 @@ export const prerender = false;
 import { Image } from "astro:assets";
 
 const slug = Astro.params.slug as string & {};
-const project = await getEntry("projects", slug);
+const project = await getEntry("blog", slug);
 import "../../styles/project-page.css";
 import { Icon } from "astro-icon/components";
 import { getColorFromFilename } from "../../../utils/wallpaper";
@@ -15,9 +15,7 @@ import { getColorFromFilename } from "../../../utils/wallpaper";
 const project_safe = project || {
     data: { image: "default-project" },
 };
-const image = await import(
-    `../../assets/projects/${project_safe.data.image}.png`
-);
+const image = await import(`../../assets/blog/${project_safe.data.image}.jpg`);
 
 // get the random index from ?color= query param
 const url = new URL(Astro.request.url);
@@ -75,6 +73,18 @@ const { Content, headings } = await render(project);
                     </div>
                 </div>
                 <div class="separator"></div>
+                <p class="projectime">
+                    {
+                        new Date(project.data.date).toLocaleDateString(
+                            "en-UK",
+                            {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            },
+                        )
+                    }
+                </p>
                 <Content />
             </div>
         </div>

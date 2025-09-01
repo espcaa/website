@@ -12,20 +12,24 @@ interface MapProps {
   waterColor?: string;
   landColor?: string;
   borderColor?: string;
-  zoom?: number;
   width?: string;
   height?: string;
   places: any;
+  latitude?: number;
+  longitude?: number;
+  disableLinks?: boolean;
 }
 
 const Map: React.FC<MapProps> = ({
   waterColor = "#a0c8f0",
   landColor = "#e0e0e0",
   borderColor = "#ffffff",
-  zoom = 10,
   width = "100%",
   height = "400px",
   places,
+  latitude = 52.517,
+  longitude = 13.388,
+  disableLinks = false,
 }) => {
   // Change colors in style
 
@@ -55,7 +59,7 @@ const Map: React.FC<MapProps> = ({
           return layer;
         }),
       } as any,
-      center: [13.388, 52.517],
+      center: [longitude, latitude],
       zoom: 2,
       container: "map",
       attributionControl: false,
@@ -73,6 +77,8 @@ const Map: React.FC<MapProps> = ({
             image={place.data.image}
             name={place.data.name}
             description={place.data.description}
+            link={place.data.link}
+            disableLink={disableLinks}
           />,
         );
 
@@ -81,7 +87,7 @@ const Map: React.FC<MapProps> = ({
           .addTo(map);
       }
     });
-  }, [zoom, waterColor, landColor, places]);
+  }, [waterColor, landColor, places]);
 
   return (
     <div

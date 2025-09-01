@@ -51,7 +51,7 @@ a {
 .proj-description {
     font-size: 1.2rem;
     font-style: italic;
-    line-height: 0.1;
+    line-height: 1.2;
 }
 
 .proj-title {
@@ -82,6 +82,7 @@ a {
 
 .separator {
     width: 100%;
+    margin-right: 20vw;
     height: 2px;
     background-color: var(--primary);
     margin: 20px 0;

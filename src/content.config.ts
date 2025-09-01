@@ -18,4 +18,13 @@ const places = defineCollection({
   }),
 });
 
-export const collections = { projects, places };
+const blog = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    image: z.string().optional(),
+    date: z.string(),
+  }),
+});
+
+export const collections = { projects, places, blog };

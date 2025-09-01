@@ -11,10 +11,12 @@
   "dependencies": {
     "@astrojs/image": "^0.18.0",
     "@astrojs/mdx": "^4.3.4",
+    "@astrojs/node": "^9.4.3",
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.5.0",
     "@material/material-color-utilities": "^0.3.0",
+    "@octokit/rest": "^22.0.0",
     "@rollup/plugin-dynamic-import-vars": "^2.1.5",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",

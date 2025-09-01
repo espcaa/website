@@ -7,7 +7,7 @@ export const prerender = false;
 import { Image } from "astro:assets";
 
 const slug = Astro.params.slug as string & {};
-const project = await getEntry("projects", slug);
+const project = await getEntry("places", slug);
 import "../../styles/project-page.css";
 import { Icon } from "astro-icon/components";
 import { getColorFromFilename } from "../../../utils/wallpaper";
@@ -15,9 +15,6 @@ import { getColorFromFilename } from "../../../utils/wallpaper";
 const project_safe = project || {
     data: { image: "default-project" },
 };
-const image = await import(
-    `../../assets/projects/${project_safe.data.image}.png`
-);
 
 // get the random index from ?color= query param
 const url = new URL(Astro.request.url);
@@ -40,7 +37,7 @@ const { Content, headings } = await render(project);
 
 <html lang="en">
     <head>
-        <title>{project.data.title}</title>
+        <title>{project.data.name}</title>
     </head>
     <body
         style={`margin:0;
@@ -62,13 +59,13 @@ const { Content, headings } = await render(project);
             </div>
             <div class="container">
                 <div class="header-proj">
-                    <Image
-                        src={image.default}
-                        alt={project.data.title}
+                    <img
+                        src={`/places/${project.data.image}.webp`}
+                        alt={project.data.name}
                         class="proj-header-img"
                     />
                     <div class="proj-header-text">
-                        <h1 class="proj-title">{project.data.title}</h1>
+                        <h1 class="proj-title">{project.data.name}</h1>
                         <p class="proj-description">
                             {project.data.description}
                         </p>
