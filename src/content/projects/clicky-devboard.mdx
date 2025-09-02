@@ -11,3 +11,18 @@ import Link from "../../components/Link.astro"
 <Link link="" icon_str="github" text="github repo"/>
 \
 Hii!
+
+import PhotoCarousel from '../../components/PhotoCarousel.tsx';
+
+<PhotoCarousel images={[
+  {
+    src: "/assets/projects/clicky/both.jpg",
+    alt: "clicky devboard front"
+  }, {
+    src: "/assets/projects/clicky/close.jpg",
+    alt: "clicky devboard back"
+  }, {
+    src: "/assets/projects/clicky/side.jpg",
+    alt: "clicky devboard side"
+  }
+]}/>

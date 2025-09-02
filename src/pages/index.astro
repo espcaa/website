@@ -39,36 +39,6 @@ const wallpaperMetadata = await import(
     `../data/wallpapers/${randomIndex}.json`
 );
 
-let wakatime_data = { data: { grand_total: { total_seconds: 0 } } };
-
-try {
-    const wakatime_response = await fetch(
-        "https://hackatime.hackclub.com/api/hackatime/v1/users/U05MKEZUY67/statusbar/today",
-        {
-            headers: {
-                Authorization: "Bearer " + import.meta.env.HACKATIME_KEY,
-            },
-        },
-    );
-
-    if (!wakatime_response.ok) {
-        throw new Error(`Fetch failed with status ${wakatime_response.status}`);
-    }
-
-    wakatime_data = await wakatime_response.json();
-} catch (err) {
-    console.warn("Failed to fetch WakaTime data, using fallback:", err);
-    wakatime_data.data.grand_total.total_seconds = 0;
-}
-
-const secondsToHumanReadable = (seconds_waka: number) => {
-    const totalSeconds = seconds_waka;
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return `${hours}h ${minutes}m`;
-};
-
 const end = performance.now();
 const ssrTime = end - start;
 ---
@@ -144,11 +114,8 @@ const ssrTime = end - start;
                         hardware!), exploring new places or doing some random
                         things like rock climbing. When I'm not on coding, you
                         can see me in the hackclub slack! (the addiction is
-                        running deep...) I coded for {
-                            secondsToHumanReadable(
-                                wakatime_data.data.grand_total.total_seconds,
-                            )
-                        } today!
+                        running deep...) I coded for <em id="waka-time"></em>
+                        today!
                     </p>
                     <h2>My projects!</h2>
                     <Projects colorId={randomIndex} />
@@ -174,9 +141,7 @@ const ssrTime = end - start;
                             website are just markdown files!
                         </li>
                         <li>
-                            I coded {
-                                wakatime_data.data.grand_total.total_seconds
-                            } seconds today!
+                            I coded <em id="waka-seconds"></em> seconds today!
                         </li>
                         <li>
                             <a href={gitInfo?.url}
@@ -209,5 +174,32 @@ const ssrTime = end - start;
                 {wallpaperMetadata.date}
             </p>
         </div>
+        <script>
+            const secondsToHumanReadable = (seconds_waka: number) => {
+                const totalSeconds = seconds_waka;
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                return `${hours}h ${minutes}m`;
+            };
+            let wakatime_seconds = 0;
+            // fetch the wakatime data
+            await fetch("/api/hackatime")
+                .then((response) => response.json())
+                .then((data) => {
+                    // get the seconds
+                    wakatime_seconds = data.wakatime_seconds;
+                })
+                .catch((error) => {
+                    wakatime_seconds = 0;
+                });
+
+            // set the human readable thingy
+            //
+            document.getElementById("waka-seconds")!.innerText =
+                secondsToHumanReadable(wakatime_seconds);
+            document.getElementById("waka-time")!.innerText =
+                secondsToHumanReadable(wakatime_seconds);
+        </script>
     </body>
 </html>
