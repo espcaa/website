@@ -7,16 +7,39 @@ image : "clicky-devboard"
 ---
 
 import Link from "../../components/Link.astro"
-
-<Link link="" icon_str="github" text="github repo"/>
-\
-Hii!
-
+import Row from "../../components/Row.astro"
 import PhotoCarousel from '../../components/PhotoCarousel.tsx';
 
-<PhotoCarousel images={[
-  {
-    src: "/assets/projects/clicky/both.jpg",
+<Row>
+<Link link="https://github.com/espcaa/clicky-devboard" icon_str="github" text="github repo"/>
+<Link link="https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fespcaa%2Fclicky-devboard%2Ftree%2Fmain%2Fkicad" icon_str="circuit" text="kicanvas!"/>
+</Row>
+\
+\
+I made this little devboard for fun when i was in sf! I wanted a small rp2350 board and thought why not add mechanical switches to it! After a while i found a cool reverse design thanks to [acon's attempt at this](https://aconlin.com). I spent a lot of time on this since it was my first really complex design; i was just used to drop capacitors resistors and mcus on boards before!\
+\
+I was so determined to make it that i spent a full night fixing everything and even working on it at the laundromat!\
+\
+yay looks cool :p
+
+<PhotoCarousel images={[{
+    src: "/assets/projects/clicky/screen.png",
+    alt: "clicky devboard schematic"
+  }, {
+    src: "/assets/projects/clicky/3d.png",
+    alt: "clicky devboard pcb"
+  }
+]}/>
+\
+\
+I was so scared it wouldn't work but still ordered it from jlcpcb! (50$, not that bad actually...)\
+After a few weeks it arrived and to my surprise, everything worked perfectly the first time! I then soldered the switches & headers and i had a complete project :D
+\
+\
+look how pretty it is :D
+
+<PhotoCarousel images={[{
+    src: "/assets/projects/clicky/finished.jpg",
     alt: "clicky devboard front"
   }, {
     src: "/assets/projects/clicky/close.jpg",
@@ -26,3 +49,6 @@ import PhotoCarousel from '../../components/PhotoCarousel.tsx';
     alt: "clicky devboard side"
   }
 ]}/>
+\
+\
+everything can be found on the github repo! (including the kicad files)
