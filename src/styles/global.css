@@ -67,7 +67,7 @@ html {
     position: fixed;
     top: 0;
     right: 0;
-    width: 41vw;
+    min-width: 45vw;
     height: 100vh;
     overflow: hidden;
     z-index: -1; /* behind everything */
@@ -211,4 +211,10 @@ h1 {
 
 em {
     font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }

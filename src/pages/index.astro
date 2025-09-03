@@ -197,7 +197,7 @@ const ssrTime = end - start;
             // set the human readable thingy
             //
             document.getElementById("waka-seconds")!.innerText =
-                secondsToHumanReadable(wakatime_seconds);
+                wakatime_seconds.toString();
             document.getElementById("waka-time")!.innerText =
                 secondsToHumanReadable(wakatime_seconds);
         </script>
