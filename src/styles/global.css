@@ -68,6 +68,7 @@ h2 {
 }
 
 .bgimg {
+    display: block;
     z-index: -10;
     width: 100%;
     height: 100%;
@@ -221,6 +222,10 @@ h1 {
 
     .container {
         order: 0; /* default */
+    }
+
+    em.sha {
+        word-break: break-all;
     }
 }
 

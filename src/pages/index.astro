@@ -146,8 +146,10 @@ const ssrTime = end - start;
                         <li>
                             <a href={gitInfo?.url}
                                 >the latest commit to this website</a
-                            > was {gitInfo?.sha}
-                            - {gitInfo?.text}
+                            > was <em class="sha">
+                                {gitInfo?.sha}
+                                - {gitInfo?.text}</em
+                            >
                         </li>
                         <li>
                             SSR took {ssrTime.toFixed(2)}ms to render this page!
