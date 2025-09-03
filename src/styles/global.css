@@ -63,16 +63,6 @@ html {
     background-color: var(--background);
 }
 
-.bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    min-width: 45vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: -1; /* behind everything */
-}
-
 h2 {
     text-decoration: underline wavy;
 }
@@ -82,6 +72,7 @@ h2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    will-change: transform;
 }
 
 body {
@@ -106,6 +97,15 @@ body {
     gap: 10px;
     justify-content: space-between;
     flex: 1;
+}
+
+.bg {
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    width: 41vw;
 }
 
 .headertop {
@@ -163,6 +163,19 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .bg {
+        position: relative; /* scrolls with content */
+        width: 100%; /* full width */
+        height: 40vh;
+        flex: 1; /* takes remaining space */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        height: 100vh;
+        z-index: 0; /* behind container content, optional */
+    }
+
     .picture-info {
         visibility: hidden;
     }
@@ -180,11 +193,11 @@ h1 {
     }
 
     .container {
-        width: auto;
+        width: 92vw;
         border-right: none;
         border-top: 10px solid var(--primary);
-        margin-top: 40vh;
-        padding: 40px;
+
+        padding: 4vw;
     }
 
     .headertop {
@@ -196,6 +209,18 @@ h1 {
 
     .m3colors {
         margin-top: 10px;
+    }
+
+    body {
+        flex-direction: column; /* stack vertically */
+    }
+
+    .bg {
+        order: -1; /* move bg to the top */
+    }
+
+    .container {
+        order: 0; /* default */
     }
 }
 
@@ -211,14 +236,4 @@ h1 {
 
 em {
     font-style: normal;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-* {
-    outline: 1px solid red;
 }
