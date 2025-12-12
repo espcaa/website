@@ -1,0 +1,79 @@
+---
+name : "Shanghai"
+description : "china's a big place"
+image : "shanghai"
+longitude : 121.4737
+latitude : 31.2304
+---
+
+import PhotoCarousel from '../../components/PhotoCarousel.tsx';
+import Link from "../../components/Link.astro"
+import Row from "../../components/Row.astro"
+import LineBreak from "../../components/LineBreak.astro"
+
+<LineBreak/>
+Shanghai!! I've been here once for (intense surprise) a hackclub event :D (juice!) \
+It's a super big city (we only saw like 5% of it) and it has a very cool vibe!\
+It was my first time going to asia and ~~except the mass surveillance~~ it was super fun :D
+
+<LineBreak/>
+<LineBreak/>
+<LineBreak/>
+
+<PhotoCarousel  client:load images={[{
+    src: "/assets/places/shanghai/train.jpg",
+    alt: "train",
+  }, {
+    src: "/assets/places/shanghai/tgv.jpg",
+    alt: "tgv",
+  }, {
+    src: "/assets/places/shanghai/airport.jpg",
+    alt: "airport",
+  }, {
+    src: "/assets/places/shanghai/plane.jpg",
+    alt: "plane",
+      }
+]}/>
+<LineBreak/>
+_nice 787-9 right :)_
+\
+\
+Exploring the city was cool and we got to see a lot of things!
+<LineBreak/>
+
+<LineBreak/>
+<PhotoCarousel  client:load images={[{
+    src: "/assets/places/shanghai/skyline.jpg",
+    alt: "skyline",
+  }, {
+    src: "/assets/places/shanghai/ikea.jpg",
+    alt: "ikea",
+  }, {
+    src: "/assets/places/shanghai/road.jpg",
+    alt: "road",
+  }, {
+    src: "/assets/places/shanghai/working.jpg",
+    alt: "working",
+  }, {
+    src: "/assets/places/shanghai/night-sparklelabs.jpg",
+    alt: "sparklelabs",
+  }, {
+    src: "/assets/places/shanghai/sparklelabs.jpg",
+    alt: "sparklelabs",
+  }, {
+    src: "/assets/places/shanghai/restaurant.jpg",
+    alt: "restaurant",
+  }
+]}/>
+<LineBreak/>
+_they have ikea there too :D_
+\
+\
+I'd like to go back one day and explore more of china instead of just shanghai!\
+A small bonus pic :p
+<LineBreak/>
+<PhotoCarousel  client:load images={[{
+    src: "/assets/places/shanghai/lopa.jpg",
+    alt: "lopa",
+  }
+]}/>

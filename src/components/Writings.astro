@@ -1,0 +1,44 @@
+---
+import "../styles/projects.css";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
+
+const slides = await Promise.all(
+    blogPosts.map(async (writings) => {
+        const imageImport = await import(
+            `../assets/blog/${writings.data.image}.jpg`
+        );
+        return {
+            writings,
+            image: imageImport.default,
+        };
+    }),
+);
+
+// get the component prop colorId
+
+const { colorId } = Astro.props;
+---
+
+<div class="projects-row">
+    {
+        slides.map(({ writings, image }) => (
+            <div class="project-card">
+                <a
+                    href={`/blog/${writings.slug}?color=${colorId}`}
+                    class="project-link"
+                >
+                    <div class="project-image">
+                        <Image src={image} alt={writings.data.title} />
+                    </div>
+                    <div class="project-content">
+                        <h3>{writings.data.title}</h3>
+                        <p>{writings.data.description}</p>
+                    </div>
+                </a>
+            </div>
+        ))
+    }
+</div>

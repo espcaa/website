@@ -1,0 +1,12 @@
+---
+import { Icon } from "astro-icon/components";
+import "./Link.css";
+const { link, icon_str, text } = Astro.props;
+---
+
+<a href={link} class="custom-link">
+    <div class="link-container">
+        <Icon name={icon_str} class="link-icon" />
+        <span class="link-text">{text}</span>
+    </div>
+</a>

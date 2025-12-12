@@ -1,0 +1,99 @@
+---
+name : "San Francisco"
+description : "cool city!"
+image : "sf"
+longitude : -122.4194
+latitude : 37.7749
+---
+
+import PhotoCarousel from '../../components/PhotoCarousel.tsx';
+import Link from "../../components/Link.astro"
+import Row from "../../components/Row.astro"
+import LineBreak from "../../components/LineBreak.astro"
+
+SF!! I've been there two times and it's a cool/strange city :D
+
+## Summer 2024
+
+This was my first time going out of france! I didn't actually went to sf, but in the tahoe national park, wich is about 3 hours away from sf... It was super cool! I went there with ... yes hacckclub :p \
+We hiked for a week and that was super fun! We saw so many beautiful things and it's something i'll probably never forget :D
+<LineBreak/>
+<PhotoCarousel  client:load images={[{
+    src: "/assets/places/sf/mountain.jpg",
+    alt: "tahoe!",
+  }, {
+    src: "/assets/places/sf/lake.jpg",
+    alt: "lake",
+  }, {
+    src: "/assets/places/sf/flower.jpg",
+    alt: "flower",
+  }, {
+    src: "/assets/places/sf/strangesky.jpg",
+    alt: "strangesky",
+      }, {
+        src: "/assets/places/sf/flower2.jpg",
+        alt: "another flower :D",
+      },
+]}/>
+<LineBreak/>
+
+## Summer 2025
+
+Spent one and a half months there thanks to the [neighborhood](https://neighborhood.hackclub.com/) program! It was very fun (even though it had some lows too). I got to meet a lot of cool people and do cool things around the city!!
+
+<LineBreak/>
+<PhotoCarousel  client:load images={[{
+    src: "/assets/places/sf/bridge.jpg",
+    alt: "golden gate bridge",
+  }, {
+    src: "/assets/places/sf/plen.jpg",
+    alt: "plen",
+  }, {
+    src: "/assets/places/sf/city.jpg",
+    alt: "city",
+  }, {
+    src: "/assets/places/sf/plen-boat.jpg",
+    alt: "boat from the plen",
+  }, {
+    src: "/assets/places/sf/bart.jpg",
+    alt: "bart",
+  }, {
+    src: "/assets/places/sf/firework.jpg",
+    alt: "firework",
+  }, {
+    src: "/assets/places/sf/loveyourself.jpg",
+    alt: "love yourself mural",
+  }
+]}/>
+<LineBreak/>
+
+### Undercity
+
+Undercity was a 4 days hackathon at github's hq! It was a lot of fun and even though we did poorly, it was super fun :D \
+Our project was a small blahaj-kart that (was supposed to) follow you around! In the end we only got it to be remote controlled + wag its tail but i'm still proud of it!\
+\
+Some photos:
+
+<LineBreak/>
+<PhotoCarousel  client:load images={[{
+    src: "/assets/places/sf/haj.jpg",
+    alt: "our project",
+  }, {
+    src: "/assets/places/sf/fog.jpg",
+    alt: "fog",
+  }, {
+    src: "/assets/places/sf/wip.jpg",
+    alt: "hacking",
+  }, {
+    src: "/assets/places/sf/secret.jpg",
+    alt: "uh i'm not sure i can show this",
+  }, {
+    src: "/assets/places/sf/zach.jpg",
+    alt: "zach latta",
+  }
+]}/>
+<LineBreak/>
+<Row>
+<Link link="https://github.com/espcaa/hajkart" icon_str="github" text="github repo"/>
+<Link link="https://www.youtube.com/watch?v=v1HiRQqpXh8" icon_str="youtube" text="silly video about it"/>
+</Row>

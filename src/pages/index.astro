@@ -1,0 +1,207 @@
+---
+const start = performance.now();
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+import {
+    getColorFromFilename,
+    getRandomWallpaperIndex,
+} from "../../utils/wallpaper";
+
+export const prerender = false;
+
+import Projects from "../components/Projects.astro";
+import Writings from "../components/Writings.astro";
+import { getCollection } from "astro:content";
+const placesData = await getCollection("places");
+
+const gitInfo = getCommitInfo();
+
+const randomIndex = getRandomWallpaperIndex();
+const wallpaperStringPath = `/wallpapers/${randomIndex}.webp`;
+console.log(randomIndex.toString());
+const colors = await getColorFromFilename(randomIndex.toString());
+import pfp from "../assets/pfp.png";
+import Map from "../components/Map";
+import { getCommitInfo } from "../utils/github";
+
+const places = placesData.map((place) => ({
+    ...place,
+    data: {
+        ...place.data,
+        link: `/places/${place.slug}?color=${randomIndex}`,
+    },
+}));
+
+const wallpaperMetadata = await import(
+    `../data/wallpapers/${randomIndex}.json`
+);
+
+const end = performance.now();
+const ssrTime = end - start;
+---
+
+<!doctype html>
+<html lang="en" style={`background-color: ${colors.background};`}>
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{SITE_TITLE}</title>
+        <meta name="description" content={SITE_DESCRIPTION} />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/pfp.png" />
+        <link rel="icon" type="image/png" href="/pfp.png" />
+    </head>
+    <body
+        style={`margin:0;
+           --primary: ${colors.primary};
+           --on-primary: ${colors.onPrimary};
+           --secondary: ${colors.secondary};
+           --on-secondary: ${colors.onSecondary};
+           --tertiary: ${colors.tertiary};
+           --on-tertiary: ${colors.onTertiary};
+           --background: ${colors.background};
+           --on-background: ${colors.onBackground};
+           --surface: ${colors.surface};
+           --on-surface: ${colors.onSurface};
+    `}
+    >
+        <div class="container">
+            <div class="header">
+                <div class="pfpcontainer">
+                    <Image src={pfp} alt="Profile Picture" class="pfp" />
+                </div>
+                <div class="headercontent">
+                    <div class="headertop">
+                        <div><h1 class="title">alice [@spc]</h1></div>
+                        <div class="m3colors">
+                            <div
+                                class="color"
+                                style={`background-color: var(--primary);`}
+                            >
+                            </div>
+                            <div
+                                class="color"
+                                style={`background-color: var(--secondary);`}
+                            >
+                            </div>
+                            <div
+                                class="color"
+                                style={`background-color: var(--tertiary);`}
+                            >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="headerbottom">
+                        <a href="https://github.com/espcaa">
+                            <Icon name="commit" class="icon" />
+                        </a>
+                        <a href="mailto:alice@hackclub.cc" class="email-link">
+                            <Icon name="mail" class="icon" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="about">
+                    <h2>About Me</h2>
+                    <p>
+                        Hi! I'm Alice :D I spend my days (or often nights)
+                        trying to build software (or hardware!) that (sometimes)
+                        work, exploring new places or doing some random things
+                        like rock climbing. Most of the time I'm also just
+                        yapping on slack (the addiction is running deep...) I
+                        coded for <em id="waka-time"></em>
+                        today!
+                    </p>
+                    <h2>My projects!</h2>
+                    <Projects colorId={randomIndex} />
+                    <h2>Places i've been to!</h2>
+                    <Map
+                        landColor={colors.onBackground}
+                        waterColor={colors.onPrimary}
+                        client:load
+                        borderColor={colors.background}
+                        places={places}
+                    />
+                    <p>
+                        the lack of zoom is intentional. you can click on things
+                        to get more details :D
+                    </p>
+                    <h2>Random writings!</h2>
+                    <Writings colorId={randomIndex} />
+
+                    <h2>Nerdy stats & infos!</h2>
+                    <ul>
+                        <li>
+                            Most of the data like project & places on this
+                            website are just markdown files!
+                        </li>
+                        <li>
+                            I coded for <em id="waka-seconds"></em> seconds today!
+                        </li>
+                        <li>
+                            <a href={gitInfo?.url}
+                                >the latest commit to this website</a
+                            > was <em class="sha">
+                                {gitInfo?.sha}
+                                - {gitInfo?.text}</em
+                            >
+                        </li>
+                        <li>
+                            SSR took {ssrTime.toFixed(2)}ms to render this page!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg">
+            <img
+                src={wallpaperStringPath}
+                alt="Random wallpaper"
+                class="bgimg"
+            />
+        </div>
+        <div class="picture-info">
+            <p>
+                {wallpaperMetadata.what}
+            </p>
+            <p>
+                {wallpaperMetadata.where}
+            </p>
+            <p>
+                {wallpaperMetadata.date}
+            </p>
+        </div>
+        <script>
+            const secondsToHumanReadable = (seconds_waka: number) => {
+                const totalSeconds = seconds_waka;
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                return `${hours}h ${minutes}m`;
+            };
+            let wakatime_seconds = 0;
+            // fetch the wakatime data
+            await fetch("/api/hackatime")
+                .then((response) => response.json())
+                .then((data) => {
+                    // get the seconds
+                    wakatime_seconds = data.wakatime_seconds;
+                })
+                .catch((error) => {
+                    wakatime_seconds = 0;
+                });
+
+            // set the human readable thingy
+            //
+            document.getElementById("waka-seconds")!.innerText =
+                wakatime_seconds.toString();
+            document.getElementById("waka-time")!.innerText =
+                secondsToHumanReadable(wakatime_seconds);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+.link-container {
+    background-color: var(--on-background);
+    color: var(--background) !important;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.custom-link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.link-icon {
+    height: 150%;
+    margin-right: 10px;
+    vertical-align: middle;
+}

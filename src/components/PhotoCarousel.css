@@ -1,0 +1,74 @@
+.photo-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    overflow: scroll; /* hide horizontal scroll */
+}
+
+/* Image strip */
+.carousel-container {
+    display: flex;
+    gap: 10px;
+    justify-content: start; /* left-align images */
+    overflow-x: auto; /* horizontal scroll */
+    overflow-y: hidden; /* hide vertical scroll */
+    scroll-behavior: smooth; /* optional for smooth scrolling */
+}
+
+.carousel-image {
+    width: 100%; /* fill parent */
+    max-width: 400px; /* don’t get too huge */
+    min-width: 200px; /* don’t get too small */
+    height: auto; /* maintain aspect ratio */
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 0.75rem; /* rounded corners look cleaner */
+    transition:
+        filter 0.2s ease,
+        transform 0.2s ease;
+}
+
+.carousel-image:hover {
+    filter: brightness(0.7); /* 70% brightness = darker */
+}
+
+.carousel-image.rounded {
+    border-radius: 12px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close:hover {
+    color: #ccc;
+}
