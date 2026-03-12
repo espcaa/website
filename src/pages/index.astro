@@ -31,7 +31,7 @@ const places = placesData.map((place) => ({
     ...place,
     data: {
         ...place.data,
-        link: `/places/${place.slug}?color=${randomIndex}`,
+        link: `/places/${place.id}?color=${randomIndex}`,
     },
 }));
 
