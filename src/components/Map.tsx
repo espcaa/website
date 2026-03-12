@@ -60,15 +60,10 @@ const Map: React.FC<MapProps> = ({
         }),
       } as any,
       center: [longitude, latitude],
-      zoom: 2,
+      zoom: 4,
       container: "map",
       attributionControl: false,
-      scrollZoom: false,
-      touchZoomRotate: false,
-      doubleClickZoom: false,
     });
-
-    console.log("adding places");
 
     places.forEach((place: any) => {
       if (place.data.latitude && place.data.longitude) {
@@ -89,6 +84,7 @@ const Map: React.FC<MapProps> = ({
           .addTo(map);
       }
     });
+
   }, [waterColor, landColor, places]);
 
   return (

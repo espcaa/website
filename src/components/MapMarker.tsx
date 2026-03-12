@@ -32,7 +32,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({
       />
       <div className="marker-label">
         {name && <div className="marker-name">{name}</div>}
-        {description && <div>{description}</div>}
+        {description && <div style={{ fontStyle: "italic" }}>{description}</div>}
       </div>
     </div>
   );

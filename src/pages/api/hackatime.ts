@@ -3,11 +3,12 @@ import type { APIRoute } from "astro";
 export const prerender = false;
 
 export const GET: APIRoute = async ({ params, request }) => {
+  console.log("Hackatime API called");
   let wakatime_seconds = 0;
   try {
     // check if HACKATIME_KEY is set
 
-    if (!import.meta.env.HACKATIME_KEY) {
+    if (!process.env.HACKATIME_KEY) {
       return new Response(JSON.stringify({ error: "HACKATIME_KEY not set" }), {
         status: 500,
       });
@@ -17,7 +18,7 @@ export const GET: APIRoute = async ({ params, request }) => {
       "https://hackatime.hackclub.com/api/hackatime/v1/users/U05MKEZUY67/statusbar/today",
       {
         headers: {
-          Authorization: "Bearer " + import.meta.env.HACKATIME_KEY,
+          Authorization: "Bearer " + process.env.HACKATIME_KEY,
         },
       },
     );

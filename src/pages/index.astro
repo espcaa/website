@@ -111,15 +111,20 @@ const ssrTime = end - start;
                     <p>
                         Hi! I'm Alice :D I spend my days (or often nights)
                         trying to build software (or hardware!) that (sometimes)
-                        work, exploring new places or doing some random things
-                        like rock climbing. Most of the time I'm also just
-                        yapping on slack (the addiction is running deep...) I
-                        coded for <em id="waka-time"></em>
+                        work, exploring new places (i love travelling!) or doing
+                        some random things like rock climbing. Most of the time
+                        I'm also just yapping on hackclub's slack (the addiction
+                        is running deep...) I coded for <em id="waka-time"></em>
                         today!
                     </p>
                     <h2>My projects!</h2>
                     <Projects colorId={randomIndex} />
                     <h2>Places i've been to!</h2>
+                    <p>I mostly travel alone to attend hackclub events!</p>
+                    <p>
+                        Explore the map to see everywhere I've been to +
+                        writings about each place!
+                    </p>
                     <Map
                         landColor={colors.onBackground}
                         waterColor={colors.onPrimary}
@@ -127,10 +132,6 @@ const ssrTime = end - start;
                         borderColor={colors.background}
                         places={places}
                     />
-                    <p>
-                        the lack of zoom is intentional. you can click on things
-                        to get more details :D
-                    </p>
                     <h2>Random writings!</h2>
                     <Writings colorId={randomIndex} />
 
