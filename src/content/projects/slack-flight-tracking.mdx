@@ -1,0 +1,29 @@
+---
+title: "Slack flight tracking bot"
+description: "a quite complex slack bot to track flights and subscribe to flight updates, written in go!"
+image: "slack-flight-tracking"
+---
+
+
+import Link from "../../components/Link.astro"
+import Row from "../../components/Row.astro"
+import PhotoCarousel from '../../components/PhotoCarousel.tsx';
+
+<Link link="https://github.com/espcaa/slack-flight-tracking" icon_str="github" text="github repo"/>
+
+## demo!
+
+
+<PhotoCarousel  client:load images={[{
+    src: "/assets/projects/flights/screen.png",
+    alt: "slack screenshot"
+  }
+]}/>
+
+## commands
+
+- list-flights: List all tracked flights
+- track-flight: Track a flight
+- untrack-flight: Untrack a flight
+- flights-help: Show help information
+- flight-info: Get information about a specific flight

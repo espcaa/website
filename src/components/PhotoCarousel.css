@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: start;
     width: 100%;
-    overflow: scroll; /* hide horizontal scroll */
+    overflow: hidden;
+    margin-top: 1rem;
 }
 
 /* Image strip */
