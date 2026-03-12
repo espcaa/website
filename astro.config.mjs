@@ -16,6 +16,7 @@ export default defineConfig({
   outDir: "dist",
   base: "/",
   integrations: [mdx(), sitemap(), icon(), react()],
+  site: "https://espcaa.eu",
 
   vite: {
     plugins: [
