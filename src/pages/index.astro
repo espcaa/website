@@ -51,9 +51,8 @@ const ssrTime = end - start;
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{SITE_TITLE}</title>
         <meta name="description" content={SITE_DESCRIPTION} />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/pfp.png" />
-        <link rel="icon" type="image/png" href="/pfp.png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
     </head>
     <body
         style={`margin:0;
@@ -76,31 +75,61 @@ const ssrTime = end - start;
                 </div>
                 <div class="headercontent">
                     <div class="headertop">
-                        <div><h1 class="title">Alice [@spc]</h1></div>
+                        <div class="nameContainer">
+                            <h1 class="title">Alice</h1>
+                            <p class="githubhandle">@espcaa</p>
+                        </div>
                         <div class="m3colors">
-                            <div
-                                class="color"
-                                style={`background-color: var(--primary);`}
-                            >
-                            </div>
-                            <div
-                                class="color"
-                                style={`background-color: var(--secondary);`}
-                            >
-                            </div>
-                            <div
-                                class="color"
-                                style={`background-color: var(--tertiary);`}
-                            >
-                            </div>
+                            {
+                                (
+                                    [
+                                        ["Primary", colors.primary],
+                                        ["Secondary", colors.secondary],
+                                        ["Tertiary", colors.tertiary],
+                                    ] as const
+                                ).map(([role, hex]) => {
+                                    const r = parseInt(hex.slice(1, 3), 16);
+                                    const g = parseInt(hex.slice(3, 5), 16);
+                                    const b = parseInt(hex.slice(5, 7), 16);
+                                    return (
+                                        <div
+                                            class="color"
+                                            style={`background-color: ${hex};`}
+                                        >
+                                            <div class="popup">
+                                                <p class="popup-role">
+                                                    {role}
+                                                </p>
+                                                <p class="popup-hex">
+                                                    {hex.toUpperCase()}
+                                                </p>
+                                                <p class="popup-rgb">
+                                                    rgb({r}, {g}, {b})
+                                                </p>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
                         </div>
                     </div>
                     <div class="headerbottom">
                         <a href="https://github.com/espcaa">
-                            <Icon name="commit" class="icon" />
+                            <button class="headerbtn">
+                                <p class="headertxt">GitHub</p>
+                                <Icon name="arrow_out" class="icon" size={32} />
+                            </button>
                         </a>
-                        <a href="mailto:alice@hackclub.cc" class="email-link">
-                            <Icon name="mail" class="icon" />
+
+                        <a href="mailto:alice@hackclub.cc">
+                            <button class="headerbtn">
+                                <p class="headertxt">Email</p>
+                                <Icon
+                                    name="arrow_out_2"
+                                    class="icon"
+                                    size={32}
+                                />
+                            </button>
                         </a>
                     </div>
                 </div>

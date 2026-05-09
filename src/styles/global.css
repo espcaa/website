@@ -6,6 +6,34 @@
     font-display: swap; /* helps with rendering while loading */
 }
 
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("/font/BricolageGrotesque[opsz,wdth,wght].ttf")
+        format("truetype-variations");
+    font-weight: 200 800;
+    font-stretch: 75% 100%;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b,
+.title,
+.name,
+.githubhandle {
+    font-family: "Bricolage Grotesque", "JetBrains Mono", sans-serif;
+    font-weight: 700;
+    font-variation-settings:
+        "wdth" 100,
+        "opsz" 24;
+}
+
 a {
     text-decoration: none;
 }
@@ -20,7 +48,6 @@ a {
     border-right: 10px solid var(--primary);
     padding: 40px;
 }
-
 
 body {
     margin: 0;
@@ -37,6 +64,7 @@ body {
     border-radius: 50%;
     height: auto;
     object-fit: cover;
+    border: 4px solid var(--primary);
 }
 
 .name {
@@ -46,15 +74,56 @@ body {
     overflow: wrap;
 }
 
-.icon {
-    width: clamp(30px, 5vw, 50px);
-    height: clamp(30px, 5vw, 50px);
-    color: var(--primary);
-    vertical-align: middle;
-    background-color: var(--on-primary);
-    border-radius: 50%;
-    padding: 10px;
+.headerbtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 999px;
+    color: var(--on-primary);
     cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.icon {
+    color: currentColor;
+    height: 18px;
+    width: 18px;
+    flex-shrink: 0;
+    transition: transform 0.18s ease;
+}
+
+.headertxt {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: 1;
+}
+
+.headerbtn:hover {
+    background-color: var(--background);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--primary);
+}
+
+.headerbtn:hover .icon {
+    transform: translate(2px, -2px);
+}
+
+.headerbtn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 0 var(--primary);
 }
 
 .header {
@@ -153,6 +222,7 @@ h2 {
 .m3colors {
     display: flex;
     flex-direction: row;
+    gap: 8px;
 }
 
 .title {
@@ -242,6 +312,57 @@ h1 {
 .color {
     width: 32px;
     height: 32px;
+    position: relative;
+    cursor: pointer;
+}
+
+.color .popup {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: auto;
+    min-width: 32px;
+    padding: 8px 10px;
+    background-color: var(--on-primary);
+    color: var(--on-surface);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    display: none;
+    z-index: 10;
+}
+
+.color .popup p + p {
+    margin-top: 4px;
+}
+
+.color:hover .popup,
+.color:focus-within .popup {
+    display: block;
+}
+
+.color .popup p {
+    margin: 0;
+    padding: 0;
+}
+
+.popup-role {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+}
+
+.popup-hex {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.popup-rgb {
+    font-size: 0.75rem;
+    opacity: 0.8;
 }
 
 .mapbox {
@@ -251,4 +372,18 @@ h1 {
 
 em {
     font-style: normal;
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.githubhandle {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin: 0;
+    font-style: italic;
 }
