@@ -222,11 +222,10 @@ h2 {
 .m3colors {
     display: flex;
     flex-direction: row;
-    gap: 8px;
 }
 
 .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 h1 {
@@ -386,4 +385,5 @@ em {
     color: var(--primary);
     margin: 0;
     font-style: italic;
+    font-weight: 500;
 }
