@@ -16,7 +16,12 @@
 }
 
 .link-icon {
-    height: 150%;
+    color: currentColor;
+    fill: currentColor;
+    height: 20px;
+    width: 20px;
+
+    flex-shrink: 0;
     margin-right: 10px;
     vertical-align: middle;
 }

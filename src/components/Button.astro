@@ -1,0 +1,22 @@
+---
+import "./Button.css";
+import Icon from "./Icon.astro";
+
+const { href, icon, text } = Astro.props;
+---
+
+{
+    href ? (
+        <a href={href} class="btn-link">
+            <button class="btn">
+                <span class="btn-text">{text}</span>
+                {icon && <Icon name={icon} class="btn-icon" />}
+            </button>
+        </a>
+    ) : (
+        <button class="btn">
+            <span class="btn-text">{text}</span>
+            {icon && <Icon name={icon} class="btn-icon" />}
+        </button>
+    )
+}

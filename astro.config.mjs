@@ -5,8 +5,6 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import dynamicImportVars from "@rollup/plugin-dynamic-import-vars";
 
-import icon from "astro-icon";
-
 import react from "@astrojs/react";
 
 import node from "@astrojs/node";
@@ -15,7 +13,7 @@ import node from "@astrojs/node";
 export default defineConfig({
   outDir: "dist",
   base: "/",
-  integrations: [mdx(), sitemap(), icon(), react()],
+  integrations: [mdx(), sitemap(), react()],
   site: "https://espcaa.eu",
 
   vite: {

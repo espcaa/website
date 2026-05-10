@@ -9,7 +9,7 @@ import { Image } from "astro:assets";
 const id = Astro.params.id as string & {};
 const project = await getEntry("blog", id);
 import "../../styles/project-page.css";
-import { Icon } from "astro-icon/components";
+import Icon from "../../components/Icon.astro";
 import { getColorFromFilename } from "../../../utils/wallpaper";
 
 const project_safe = project || {

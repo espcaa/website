@@ -1,5 +1,6 @@
 ---
 import "../styles/404.css";
+import Button from "../components/Button.astro";
 ---
 
 <html lang="en">
@@ -20,8 +21,6 @@ import "../styles/404.css";
             <source src="/videos/totallynormal.mp4" type="video/mp4" />
             no rickroll for you :(
         </video>
-        <div class="gobackbtn">
-            <a href="/" class="gobackbtnlink">Go back home</a>
-        </div>
+        <Button href="/" text="Go back home" />
     </body>
 </html>

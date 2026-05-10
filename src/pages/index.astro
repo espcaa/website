@@ -2,7 +2,8 @@
 const start = performance.now();
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
-import { Icon } from "astro-icon/components";
+import Icon from "../components/Icon.astro";
+import Button from "../components/Button.astro";
 import { Image } from "astro:assets";
 
 import {
@@ -97,9 +98,7 @@ const ssrTime = end - start;
                                             style={`background-color: ${hex};`}
                                         >
                                             <div class="popup">
-                                                <p class="popup-role">
-                                                    {role}
-                                                </p>
+                                                <p class="popup-role">{role}</p>
                                                 <p class="popup-hex">
                                                     {hex.toUpperCase()}
                                                 </p>
@@ -114,23 +113,16 @@ const ssrTime = end - start;
                         </div>
                     </div>
                     <div class="headerbottom">
-                        <a href="https://github.com/espcaa">
-                            <button class="headerbtn">
-                                <p class="headertxt">GitHub</p>
-                                <Icon name="arrow_out" class="icon" size={32} />
-                            </button>
-                        </a>
-
-                        <a href="mailto:alice@hackclub.cc">
-                            <button class="headerbtn">
-                                <p class="headertxt">Email</p>
-                                <Icon
-                                    name="arrow_out_2"
-                                    class="icon"
-                                    size={32}
-                                />
-                            </button>
-                        </a>
+                        <Button
+                            href="https://github.com/espcaa"
+                            text="GitHub"
+                            icon="arrow_out"
+                        />
+                        <Button
+                            href="mailto:alice@hackclub.cc"
+                            text="Email"
+                            icon="arrow_out_2"
+                        />
                     </div>
                 </div>
             </div>
@@ -148,7 +140,7 @@ const ssrTime = end - start;
                     </p>
                     <h2>My projects!</h2>
                     <Projects colorId={randomIndex} />
-                    <h2>Places i've been to!</h2>
+                    <h2>Places i've been to</h2>
                     <p>I mostly travel alone to attend hackclub events!</p>
                     <p>
                         Explore the map to see everywhere I've been to +
@@ -161,10 +153,21 @@ const ssrTime = end - start;
                         borderColor={colors.background}
                         places={places}
                     />
-                    <h2>Random writings!</h2>
+                    <div class="placeslist">
+                        {
+                            places.map((place) => (
+                                <Button
+                                    href={place.data.link}
+                                    text={place.data.name}
+                                    icon="arrow_out"
+                                />
+                            ))
+                        }
+                    </div>
+                    <h2>Random section</h2>
                     <Writings colorId={randomIndex} />
 
-                    <h2>Nerdy stats & infos!</h2>
+                    <h2>Nerdy stats & infos</h2>
                     <ul>
                         <li>
                             Most of the data like project & places on this

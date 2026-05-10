@@ -1,0 +1,10 @@
+---
+const allIcons = import.meta.glob<{ default: any }>("../icons/*.svg", { eager: true });
+
+const { name, class: className, ...rest } = Astro.props;
+const iconPath = `../icons/${name}.svg`;
+
+const Icon = allIcons[iconPath]?.default;
+---
+
+{Icon && <Icon class={className} {...rest} />}
