@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({  }) => {
   console.log("Hackatime API called");
   let wakatime_seconds = 0;
   try {

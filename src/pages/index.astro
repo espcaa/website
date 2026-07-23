@@ -4,8 +4,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
 import Icon from "../components/Icon.astro";
 import Button from "../components/Button.astro";
+
+// arrows
 import arrowImage from "../assets/arrow.png";
 import "../styles/scrollbar.css";
+import arrowImage2 from "../assets/arrow2.png";
+import arrowImage3 from "../assets/arrow3.png";
 
 import {
     getColorFromFilename,
@@ -113,7 +117,14 @@ const ssrTime = end - start;
                                 })
                             }
                             <div class="m3note">
-                                <p class="notice">
+                                <Image
+                                    src={arrowImage3}
+                                    alt="arrow"
+                                    class="arrow3"
+                                    width={853.4}
+                                    height={698.7}
+                                />
+                                <p class="notice" style="font-size: 1.2rem;">
                                     those colors change on every reload!
                                 </p>
                             </div>
@@ -130,6 +141,16 @@ const ssrTime = end - start;
                             text="Email"
                             icon="arrow_out_2"
                         />
+                        <Image
+                            src={arrowImage2}
+                            alt="arrow"
+                            class="arrow2"
+                            width={838.9}
+                            height={457.7}
+                        />
+                        <div class="emailnote">
+                            <p class="notice">say hi!</p>
+                        </div>
                     </div>
                 </div>
             </div>

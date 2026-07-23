@@ -17,3 +17,70 @@
     font-size: 12px;
     text-align: start;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.map-marker-popup {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    bottom: calc(100% + 58px);
+    left: 50%;
+    transform: translateX(-50%);
+    transition:
+        opacity 0.25s ease-out,
+        transform 0.25s ease-out;
+    z-index: 1000;
+}
+
+.map-marker-container {
+    position: relative;
+    display: inline-block;
+    display: flex;
+}
+
+.map-marker-pin {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    width: 4px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: var(--primary, white);
+}
+
+.map-marker-pin-circle {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary, white);
+    border-radius: 50%;
+}
+
+.map-marker-container:hover .map-marker-popup {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.map-marker-container::before {
+    content: "";
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 200px;
+    background: transparent;
+}

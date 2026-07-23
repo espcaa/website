@@ -60,7 +60,7 @@ const Map: React.FC<MapProps> = ({
         }),
       } as any,
       center: [longitude, latitude],
-      zoom: 4,
+      zoom: 1,
       container: "map",
       attributionControl: false,
     });
@@ -84,7 +84,6 @@ const Map: React.FC<MapProps> = ({
           .addTo(map);
       }
     });
-
   }, [waterColor, landColor, places]);
 
   return (

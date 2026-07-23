@@ -3,8 +3,9 @@
     flex-direction: column;
     align-items: start;
     width: 100%;
-    overflow: hidden;
+    overflow: scroll;
     margin-top: 1rem;
+    padding-bottom: 8px;
 }
 
 /* Image strip */

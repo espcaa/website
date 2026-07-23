@@ -173,6 +173,7 @@ h2 {
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
     gap: 10px;
 }
 
@@ -203,9 +204,15 @@ h1 {
 
 .m3note {
     position: absolute;
-    top: 20px;
-    right: 60px;
+    top: 40px;
+    right: 20px;
     width: 200px;
+}
+
+.emailnote {
+    position: absolute;
+    top: 40px;
+    left: 20px;
 }
 
 @media (max-width: 1140px) {
@@ -215,6 +222,10 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .emailnote {
+        visibility: hidden;
+    }
+
     .bg {
         position: relative; /* scrolls with content */
         width: 100%; /* full width */
@@ -413,8 +424,28 @@ em {
     z-index: 10;
 }
 
+.arrow2 {
+    position: absolute;
+    width: 60px;
+    height: auto;
+    top: 45px;
+    left: 100px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.arrow3 {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    top: -30px;
+    left: 60px;
+    pointer-events: none;
+    z-index: 10;
+}
+
 .notice {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--on-background);
     font-family: "Bricolage Grotesque", "JetBrains Mono", sans-serif;
     z-index: 10;
