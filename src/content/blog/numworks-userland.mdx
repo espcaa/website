@@ -1,48 +1,51 @@
 ---
-title: "Numwork userlands!"
+title: "Numwork custom userlands"
 description: "just some info on how to get them working (mostly for me to remember)"
 image: "numworks"
 date: "2025-09-01T18:00:00.000Z"
 ---
 
 Numworks is a cool brand of calculators and I have one!
-Making your software personalized is quite fun so I tried to adapt the open source
-[epsilon software](https://github.com/numworks/epsilon) with some cool stuff following the [doc on it](https://www.numworks.com/engineering/software/build/) \
-At that time the doc wasn't up to date so I had to figure out things by myself! Here's some info if you want to do the same :)
+Customizing the software on the hardware you own is quite fun so I tried to make some modifications to the open source
+[epsilon software](https://github.com/numworks/epsilon) (see the [doc on it](https://www.numworks.com/engineering/software/build/)) \
+When I tried to do this, the doc wasn't updated for a while so I had to figure out things by myself :(\
+Here's some notes for you to do the same thing and for me to not forget it again.
 
 ## Getting started
 
-1. Fork the epsilon repo! (Numworks license specifies you shouldn't redistribute it modified, but github tos should still allow you to make a fork?)
+1. Fork the epsilon repo! (Numworks license specifies that you shouldn't redistribute a modified version, but github tos should still allow you to make a fork?)
 2. Clone and install the dependencies as specified in the doc **BUT MAKE SURE THAT YOU'RE USING arm-none-eabi-gcc 12.2.1** (some other versions might work too, but the default one on a lot of linux distros won't work)
 3. Make some modifications! \
    _try modifying the colors in `/escher/include/escher/palette.h`_
-4. Now you just have to compile it for your calculator.
+4. Compile it!
 
-For a n0120 (the most common one):
+   ```bash
+   make clean
+   make -j10 userland.B.dfu MODEL=n0120 TARGET=device.n0120
+   ```
 
-```bash
-make clean
-make -j10 userland.B.dfu MODEL=n0120 TARGET=device.n0120
-```
+   (change MODEL according to your numwork's model, the exact number can be found on the back and should be something like N0110, N0115 or N0120)\
+   \
+   (you might need to build the A userland if running `python3 build/device/dfu.py -l | grep '0x90000000'` while your calculator is connected returns something, just build the B one if you get nothing.)
 
-(if you need to build for a N0115, jut change the args, and just remove them for a N0110)
-(you might need to build the A userland if running `python3 build/device/dfu.py -l | grep '0x90000000'` returns something, just build the B one if it doesn't)
+5. Flash it to your calculator!\
+   \
+   For an A userland:
 
-5. Flash it to your calculator!
+   ```bash
+   python3 build/device/dfu.py -s 0x90010000:leave -D output/release/device/n0110/userland/userland.A.dfu
+   ```
 
-For an A userland:
+   For a B userland:
 
-```bash
-python3 build/device/dfu.py -s 0x90010000:leave -D output/release/device/n0110/userland/userland.A.dfu
-```
+   ```bash
+   python3 build/device/dfu.py -s 0x90410000:leave -D output/release/device/n0120/userland/userland.B.dfu
+   ```
 
-For a B userland:
+## Github action ^-^
 
-```bash
-python3 build/device/dfu.py -s 0x90410000:leave -D output/release/device/n0120/userland/userland.B.dfu
-```
-
-## Github action!
-
-I made a github action that does all of this for you if you want :) \
+I made a github action that (should) do all of this for you!! \
 https://gist.github.com/espcaa/f6f9be7e20cd47cbd2b1aea7c5ec4ca8
+\
+\
+(update: it might be broken :sob:)
