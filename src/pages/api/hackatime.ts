@@ -6,9 +6,10 @@ export const GET: APIRoute = async ({ params, request }) => {
   console.log("Hackatime API called");
   let wakatime_seconds = 0;
   try {
+    const hackatime_key = import.meta.env.HACKATIME_KEY;
     // check if HACKATIME_KEY is set
 
-    if (!process.env.HACKATIME_KEY) {
+    if (hackatime_key == "" || !hackatime_key) {
       return new Response(JSON.stringify({ error: "HACKATIME_KEY not set" }), {
         status: 500,
       });
@@ -18,7 +19,7 @@ export const GET: APIRoute = async ({ params, request }) => {
       "https://hackatime.hackclub.com/api/hackatime/v1/users/U05MKEZUY67/statusbar/today",
       {
         headers: {
-          Authorization: "Bearer " + process.env.HACKATIME_KEY,
+          Authorization: "Bearer " + hackatime_key,
         },
       },
     );
