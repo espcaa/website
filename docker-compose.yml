@@ -1,6 +1,10 @@
 services:
   website:
-    build: .
+    build:
+      context: .
+      args:
+        GIT_COMMIT_SHA: ${GIT_COMMIT_SHA:-unknown}
+        GIT_COMMIT_MSG: ${GIT_COMMIT_MSG:-unknown}
     ports:
       - "4321:4321"
     restart: unless-stopped

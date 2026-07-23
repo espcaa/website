@@ -3,6 +3,10 @@ WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 COPY . .
+ARG GIT_COMMIT_SHA
+ARG GIT_COMMIT_MSG
+ENV GIT_COMMIT_SHA=${GIT_COMMIT_SHA}
+ENV GIT_COMMIT_MSG=${GIT_COMMIT_MSG}
 RUN bun run build
 
 FROM node:22-slim
