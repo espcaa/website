@@ -4,7 +4,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
 import Icon from "../components/Icon.astro";
 import Button from "../components/Button.astro";
-import { Image } from "astro:assets";
+import arrowImage from "../assets/arrow.png";
+import "../styles/scrollbar.css";
 
 import {
     getColorFromFilename,
@@ -27,6 +28,7 @@ const colors = await getColorFromFilename(randomIndex.toString());
 import pfp from "../assets/pfp.png";
 import Map from "../components/Map";
 import { getCommitInfo } from "../utils/github";
+import Image from "astro/components/Image.astro";
 
 const places = placesData.map((place) => ({
     ...place,
@@ -110,12 +112,17 @@ const ssrTime = end - start;
                                     );
                                 })
                             }
+                            <div class="m3note">
+                                <p class="notice">
+                                    those colors change on every reload!
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="headerbottom">
                         <Button
                             href="https://github.com/espcaa"
-                            text="GitHub"
+                            text="Github"
                             icon="arrow_out"
                         />
                         <Button
@@ -130,21 +137,39 @@ const ssrTime = end - start;
                 <div class="about">
                     <h2>About Me</h2>
                     <p>
-                        Hi! I'm Alice :D I spend my days (or often nights)
-                        trying to build software (or hardware!) that (sometimes)
-                        work, exploring new places (i love travelling!) or doing
-                        some random things like rock climbing. Most of the time
-                        I'm also just yapping on hackclub's slack (the addiction
-                        is running deep...) I coded for <em id="waka-time"></em>
-                        today!
+                        Hi! I'm Alice :D <br /> I spend most of my days (and often
+                        nights) trying to build software (or hardware) that (sometimes)
+                        works. I also like exploring new places (see the map!) or
+                        doing some random things like rock climbing. <br /> I also
+                        spend a shit ton of time yapping and building things on <a
+                            href="https://hackclub.com">hackclub</a
+                        >'s slack. <br />
+                        Today, I coded for <em id="waka-time">0h 0m</em>!
                     </p>
-                    <h2>My projects!</h2>
+                    <h2
+                        class="projectHeader"
+                        style="position: relative; display: inline-block;"
+                    >
+                        <Image
+                            width={245.3}
+                            height={631.1}
+                            class="arrow"
+                            src={arrowImage}
+                            alt="arrow"
+                        />
+                        <p class="arrowText notice">best</p>
+                        My &nbsp;Projects
+                    </h2>
                     <Projects colorId={randomIndex} />
                     <h2>Places i've been to</h2>
-                    <p>I mostly travel alone to attend hackclub events!</p>
                     <p>
-                        Explore the map to see everywhere I've been to +
-                        writings about each place!
+                        I mostly travel on my own to attend hackclub events and
+                        hackathons!
+                    </p>
+                    <p>
+                        Explore the map (or use the buttons below) to see
+                        everywhere I've been to + writings/thoughts about each
+                        place!
                     </p>
                     <Map
                         landColor={colors.onBackground}
@@ -167,14 +192,15 @@ const ssrTime = end - start;
                     <h2>Random section</h2>
                     <Writings colorId={randomIndex} />
 
-                    <h2>Nerdy stats & infos</h2>
+                    <h2>Nerdy stats</h2>
                     <ul>
                         <li>
                             Most of the data like project & places on this
                             website are just markdown files!
                         </li>
                         <li>
-                            I coded for <em id="waka-seconds"></em> seconds today!
+                            I coded for <em id="waka-seconds">0</em> seconds today!
+                            (data sourced from hackclub's wakatime instance)
                         </li>
                         <li>
                             <a href={gitInfo?.url}
@@ -210,6 +236,7 @@ const ssrTime = end - start;
             </p>
         </div>
         <script>
+            // formats time <hours>h <minutes>m
             const secondsToHumanReadable = (seconds_waka: number) => {
                 const totalSeconds = seconds_waka;
                 const hours = Math.floor(totalSeconds / 3600);
@@ -217,6 +244,7 @@ const ssrTime = end - start;
                 const seconds = totalSeconds % 60;
                 return `${hours}h ${minutes}m`;
             };
+
             let wakatime_seconds = 0;
             // fetch the wakatime data
             await fetch("/api/hackatime")

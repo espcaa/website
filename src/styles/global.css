@@ -67,6 +67,10 @@ body {
     border: 4px solid var(--primary);
 }
 
+.pfpcontainer {
+    margin-right: 20px;
+}
+
 .name {
     font-weight: 900;
     font-size: 2.5rem;
@@ -84,8 +88,6 @@ body {
 .header {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
-    gap: 20px;
 }
 
 html {
@@ -125,7 +127,6 @@ body {
 .headercontent {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     justify-content: space-between;
     flex: 1;
 }
@@ -144,7 +145,6 @@ body {
     display: flex;
     justify-content: space-between;
     flex: 1;
-    margin-top: 20px;
 }
 
 .picture-info {
@@ -165,13 +165,15 @@ a {
 
 h2 {
     margin-top: 40px;
+    position: relative;
 }
 
 .headerbottom {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .headerbottom a {
@@ -182,10 +184,11 @@ h2 {
 .m3colors {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 h1 {
@@ -196,6 +199,19 @@ h1 {
 .body {
     margin-top: 30px;
     line-height: 1.6;
+}
+
+.m3note {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    width: 200px;
+}
+
+@media (max-width: 1140px) {
+    .m3colors {
+        visibility: hidden;
+    }
 }
 
 @media (max-width: 768px) {
@@ -217,7 +233,7 @@ h1 {
     }
 
     .title {
-        font-size: 1.5rem;
+        font-size: 3rem;
     }
     body {
         flex-direction: column;
@@ -229,11 +245,12 @@ h1 {
     }
 
     .container {
-        width: 92vw;
+        width: 100%;
+        box-sizing: border-box;
         border-right: none;
         border-top: 10px solid var(--primary);
 
-        padding: 4vw;
+        padding: 6vw;
     }
 
     .headertop {
@@ -243,8 +260,17 @@ h1 {
         margin-top: 0;
     }
 
-    .m3colors {
+    .header {
         margin-top: 10px;
+    }
+
+    .m3colors {
+        visibility: visible;
+        margin-left: 0px;
+        position: relative;
+        display: inline-blockk;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
     body {
@@ -266,6 +292,23 @@ h1 {
     .bgimg {
         max-height: 40vh;
     }
+
+    .m3note {
+        visibility: hidden;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+
+    .projectHeader {
+        margin-top: 40px;
+    }
+
+    .pfp {
+        height: 100%;
+        border-radius: 500px;
+    }
 }
 
 .color {
@@ -281,7 +324,7 @@ h1 {
     left: 0;
     width: auto;
     min-width: 32px;
-    padding: 8px 10px;
+    padding: 8px;
     background-color: var(--on-primary);
     color: var(--on-surface);
     font-family: "JetBrains Mono", monospace;
@@ -304,6 +347,11 @@ h1 {
 .color .popup p {
     margin: 0;
     padding: 0;
+}
+
+.sha {
+    font-style: italic;
+    font-weight: 700;
 }
 
 .popup-role {
@@ -337,13 +385,12 @@ em {
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 5px;
 }
 
 .githubhandle {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--primary);
-    margin: 0;
+    margin-top: -10px;
     font-style: italic;
     font-weight: 500;
 }
@@ -354,23 +401,28 @@ em {
     gap: 12px;
     overflow-x: auto;
     padding-bottom: 8px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
 }
 
-.placeslist::-webkit-scrollbar {
-    height: 8px;
+.arrow {
+    position: absolute;
+    width: 12px;
+    height: auto;
+    top: -20px;
+    left: 36px;
+    pointer-events: none;
+    z-index: 10;
 }
 
-.placeslist::-webkit-scrollbar-track {
-    background: transparent;
+.notice {
+    font-size: 1.5rem;
+    color: var(--on-background);
+    font-family: "Bricolage Grotesque", "JetBrains Mono", sans-serif;
+    z-index: 10;
+    font-weight: 700;
 }
 
-.placeslist::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 4px;
-}
-
-.placeslist::-webkit-scrollbar-thumb:hover {
-    background-color: var(--on-background);
+.arrowText {
+    position: absolute;
+    top: -65px;
+    left: 55px;
 }

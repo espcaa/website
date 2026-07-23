@@ -1,0 +1,29 @@
+::-webkit-scrollbar {
+    width: 12px; /* vertical */
+    height: 12px; /* horizontal */
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-container);
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 12px;
+    border: 3px solid var(--surface-container);
+    transition: background 200ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tertiary);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--surface-container);
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--surface-container);
+}
